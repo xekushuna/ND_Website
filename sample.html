@@ -1,0 +1,49 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nerdy Dreamy | Welcome</title>
+    <!-- <link rel="stylesheet" href="css/foundation.css" /> -->
+    <script src="js/vendor/TweenMax.js"></script>
+<script>
+ var svgContainer = document.getElementById("animation");
+ var nS="http://www.w3.org/2000/svg";
+ var animation = new TimelineMax();
+ animation.pause();
+ var svgPaths = a.getElementsByTagNameNS(nS,"path");
+ for(var x = 0; x<svgPaths.length;x++){
+ var path = svgPaths[x];
+ var pathDimensions = path.getTotalLength();
+ var strokeWidth = path.getAttribute("stroke-width");
+ path.style.strokeDasharray = (pathDimensions)+" "+(pathDimensions);
+ path.style.strokeDashoffset = (/Firefox/i.test(navigator.userAgent))? pathDimensions/strokeWidth : pathDimensions;
+ animation.add(TweenMax.to(path.style,1,{strokeDashoffset:0,onUpdate:function(){
+ var n = document.createTextNode(' ');
+ document.body.appendChild(n);
+ document.body.removeChild(n);
+ }}),(x>0)?"-=0.8":"");
+ }
+ animation.play();
+</script>
+<script type="text/javascript">
+function init(){
+	var r=document.getElementById("rusty");
+	var j=document.getElementById("images");
+	var m=document.getElementById("animation");
+	TweenMax.to(r,1,{width:300});
+	TweenMax.to(j,2,{width:200});
+	TweenMax.from("h1",0.5,{left:100, autoAlpha:0});
+}
+</script>
+  </head>
+<body onload=init()>
+<h1>Are you fucking Kidding me</h1>
+<div id="animation">
+
+<p>This is some sample GSAP code. I'm might insert some lorem Ipsum here.</p>
+</div>
+<img src="svg/android-icon.svg" width="150"  id="rusty" />
+<img src="img/green_bg.png" width="550"  id="images" />
+</body>
+</html>
